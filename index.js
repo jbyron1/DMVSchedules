@@ -32,9 +32,15 @@ async function test(){
             game_name.innerText = game
             main_div.appendChild(game_name)
 
-            for(const [player, station] of Object.entries(info)){
+            for(const [player, pool_info] of Object.entries(info)){
+                station = pool_info['station']
+                phase = pool_info['phase']
+                phaseGroup = pool_info['phaseGroup']
                 player_data = document.createElement("p")
-                player_data.innerText = player + " " + station
+                game_link = game.replace(/[.:#!^]/g, "")
+                link = "https://start.gg/tournament/combo-breaker-2023/event/" + game_link.replace(/ /g, "-").toLowerCase() + "/brackets/" + phase + "/" + phaseGroup
+                console.log(link)
+                player_data.innerHTML = player + " " + "<a href=" + link + ">" + station + "</a>"
                 main_div.appendChild(player_data)
             }
         }
