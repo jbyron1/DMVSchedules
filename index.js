@@ -15,7 +15,6 @@ async function getWaves(){
 
 async function test(){
     waves= await getWaves()
-    console.log("yeah")
     main_div = document.getElementById('main')
     for(const [key, data] of Object.entries(await waves)){
         wave_name = document.createElement('h2')
@@ -37,9 +36,18 @@ async function test(){
                 phase = pool_info['phase']
                 phaseGroup = pool_info['phaseGroup']
                 player_data = document.createElement("p")
-                game_link = game.replace(/[.:#!^]/g, "")
-                link = "https://start.gg/tournament/combo-breaker-2023/event/" + game_link.replace(/ /g, "-").toLowerCase() + "/brackets/" + phase + "/" + phaseGroup
-                console.log(link)
+                game_link = game.replace(/[.#!^]/g, "")
+                game_link = game_link.replace(/[:\[\]]/g, "-")
+                game_link = game_link.replace(/- /g, "-")
+                game_link = game_link.replace(/ /g, "-").toLowerCase()
+                console.log(game_link)
+                game_link = game_link.replace(/--/g, "-")
+                console.log(game_link)
+                if(game_link.slice(-1).search(/[A-Za-z0-9]/) == -1){
+                    game_link = game_link.slice(0, -1)
+                    console.log(game_link)
+                }
+                link = "https://start.gg/tournament/combo-breaker-2023/event/" + game_link + "/brackets/" + phase + "/" + phaseGroup
                 player_data.innerHTML = player + " " + "<a href=" + link + ">" + station + "</a>"
                 main_div.appendChild(player_data)
             }
