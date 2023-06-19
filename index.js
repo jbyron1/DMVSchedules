@@ -47,7 +47,7 @@ async function test(){
                     game_link = game_link.slice(0, -1)
                     console.log(game_link)
                 }
-                link = "https://start.gg/tournament/combo-breaker-2023/event/" + game_link + "/brackets/" + phase + "/" + phaseGroup
+                link = "https://start.gg/tournament/CEO-20223-3/event/" + game_link + "/brackets/" + phase + "/" + phaseGroup
                 player_data.innerHTML = player + " " + "<a href=" + link + ">" + station + "</a>"
                 main_div.appendChild(player_data)
             }
